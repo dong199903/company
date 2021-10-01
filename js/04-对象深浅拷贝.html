@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	对象浅拷贝
+	Object.assign(p2,p1);
+
+	对象深拷贝
+	自定义封装
+
+	*/
+
+	let obj ={
+		name:"dzp",
+		age:22,
+		other:{
+			desc:"ooo"
+		}
+	}
+
+	let obj2 = new Object();
+	Object.assign(obj2,obj);
+	obj.other.desc="ppp";
+	console.log(obj2);
+
+
+	function deepCory(target,origin){
+		for(let value in origin){
+			if(origin[value] instanceof Object){
+				//1.获取具体的数据类型并创建空对象
+				let type = origin[value].constructor;
+				let obj = new type;
+				//2.空对象赋值给target[value]
+				target[value] = obj;
+				//3.继续递归拷贝
+				deepCory(target[value],origin[value]);
+			}else{
+				target[value]=origin[value];
+			}
+		}
+	}
+	let obj3 = new Object();
+	deepCory(obj3,obj);
+	obj.other.desc="vvv";
+	console.log(obj3);
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	/*
+	如何判断数据类型
+
+	1.如果是普通数据类型
+	直接使用 typeof
+
+	2.如果是引用数据类型(函数，数组，对象等)
+	> 数组直接使用 Array.isArray()判断
+	> instanceof
+	> Object.prototype.toString.call(obj).slice(8,-1).toLowerCase()
+	> 最后一个可以判断任何类型
+	*/
+
+	let arr = [];
+	console.log(Array.isArray(arr));
+	console.log(arr instanceof Array)
+	console.log(Object.prototype.toString.call(arr).slice(8,-1).toLowerCase());
+
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	instanceof
+	obj instanceof Object
+
+	> instanceof本质就是obj按照自己的原型链查找是否存在和Object的原型相等
+	*/
+
+	function myInstanceof(left,right){
+		let protovalue = right.prototype;
+		let leftproto = left.__proto__;
+		while(true){
+			if(leftproto===null)
+				return false;
+			if(leftproto===protovalue)
+				return true;
+			leftproto = leftproto.__proto__;
+		}
+	}
+
+
+	//测试
+	function Peo(name,age){
+		this.name = name;
+		this.age =age;
+	}
+	let p = new Peo("dzp",22);
+	console.log(myInstanceof(p,Peo));
+</script>
+</body>
+</html>
