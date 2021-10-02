@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	js的五种继承
+
+	1.原型链继承
+		
+	2.构造函数继承
+
+	3.组合继承
+
+	4.寄生式组合继承
+
+	5.class继承
+	*/
+	function Peo(name,age){
+		this.name = name;
+		this.age = age;
+		this.list=function(){
+			console.log(thia.name+" "+this.age);
+		}
+	}
+	Peo.prototype.pFn=function(){
+		console.log("Peo的原型方法");
+	}
+
+
+
+	/*
+	继承方式一：原型链继承
+	方式：
+		子类构造函数的原型执行了父类实例对象
+		父类实例对象的constructor指向子构造器
+
+	原理：
+		子类在自己的构造属性上找，没找到。
+		按照原型链，来到了父类的实例对象找属性和方法
+
+	确定：破坏父类的原型链三角关系
+		  子类创建对象时，无法传递参数
+
+
+
+	*/
+	function Stu1(score){
+		this.score = score;
+	}
+	let p = new Peo("dzp",22); 
+	Stu1.prototype = p;
+	p.constructor = Stu1;
+
+	let s1 = new Stu1(99);
+	console.log(s1.name+" "+s1.age+" "+s1.score);// dzp 22 99
+	s1.pFn();//可以访问父类的原型方法和方法
+
+
+
+
+	/*
+	继承方式二:构造函数继承
+	方式：
+		在子类构造函数内部，使用父类构造函数，同时修改父类的this指向子类
+
+	缺点：子类无法访问父类原型上的方法
+
+	*/
+	function Stu2(name,age,score){
+		Peo.call(this,name,age);
+		this.score = score;
+	}
+	let s2 = new Stu2("dzp",22,99);
+	console.log(s2.name+" "+s2.age+" "+s2.score);
+	//s2.pFn();--无法访问父类的原型方法
+
+
+
+
+	/*
+	继承方式三：组合继承
+	
+	方式：
+		构造函数基础上，将子类构造函数的原型指向了父类原型对象
+		               父类原型对象.constructor=子类构造函数
+	原理：
+		既可以给父类传递参数，也可以访问父类的原型方法
+
+	缺点：
+		破坏父类三角关系，父类和儿子共用了原型方法，二者任意一个修改原型上的方法，都会同时变化
+	*/
+	function Stu3(name,age,score){
+		this.score = score;
+		Peo.call(this,name,age);
+	}
+	Stu3.prototype=Peo.prototype;
+	Peo.prototype.constructor=Stu3;
+	let s3 = new Stu3("dzp",22,99);
+	console.log(s3.name+" "+s3.age+" "+s3.score);
+	s3.pFn();
+
+
+
+
+	/*
+	继承方式四：寄生组合继承
+
+	方式：
+		构造函数继承基础上，子类构造函数的原型指向父类的实例对象
+						  父类实例对象.constructor=子类构造函数
+	原理：
+		子类可以通过原型链访问父类属性和方法，并且父类原型上的属性和方法不存在污染
+
+	*/
+	function Stu4(name,age,score){
+		Peo.call(this,name,age);
+		this.score = score;
+	}
+	let p4 = new Peo();
+	Stu4.prototype = p4;
+	p4.constructor = Stu4;
+
+	let s4 = new Stu4("dzp",22,99);
+	console.log(s4.name+" "+s4.age+" "+s4.score);
+
+
+	/*
+	继承方式五：class
+
+	经典的现代语法
+	*/
+	class Father{
+		constructor(name,age){
+			this.name=name;
+			this.age = age;
+		}
+		list(){
+			console.log(this.name+" "+this.age);
+		}
+	}
+	class Son extends Father{
+		constructor(name,age,score){
+			super(name,age);
+			this.score = score;
+		}
+		print(){
+			console.log(this.name+" "+this.age+" " +this.score);
+		}
+	}
+	let s = new Son("dzp",22,99);
+	s.list();//dzp 22
+	s.print();//dzp 22 99
+
+</script>
+</body>
+</html>
