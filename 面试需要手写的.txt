@@ -17,7 +17,7 @@ https://juejin.cn/post/6844904153437700103
 https://juejin.cn/post/7004638318843412493
 
 手动实现call、apply、bind
-EventEmitter
+事件订阅
 防抖
 节流
 浅拷贝和深拷贝

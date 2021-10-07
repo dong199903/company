@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="" name="">
+<script type="text/javascript">
+	/*
+	函数防抖
+	*/
+	function dubble(fn,delay){
+		let timeId=null;
+		return function(){
+			let that=this;
+			let args = arguments;
+			timeId && clearTimeout(timeId);
+			timeId = setTimeout(function(){
+				fn.apply(that,args);
+			},delay||1000);
+		}
+	}
+	let oInput = document.querySelector("input");
+	oInput.oninput = dubble(function(e){
+		console.log(e);
+	},1500);
+</script>
+</body>
+</html>

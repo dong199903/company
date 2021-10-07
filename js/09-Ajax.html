@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	Ajax
+	*/
+	function getJsonData(url){
+		return new Promise((resolve,reject)=>{
+			//1.创建异步对象
+			const xhr = new XMLHttpRequest();
+			//2.选择发送方式，
+			xhr.open("GET",	url,true)
+			//3.设置响应头
+			xhr.setRequestHeader("Content-Type", "application/json");
+			//4.监听后端返回数据
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState!=4)
+					return ;
+				//5.成功的处理.200表示成功，304表示之前已经请求过
+				if(xhr.status===200 || xhr.status===304){
+					resolve(xhr.responseText);
+				//6.错误的处理
+				}else{
+					reject(new Error(xhr.responseText));
+				}
+			}
+			//get请求此次是空
+			xhr.send();
+		})
+	}
+</script>
+</body>
+</html>
