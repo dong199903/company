@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	1.call
+
+	2.apply
+
+	3.bind
+	*/
+	let obj={name:'dzp'};
+
+	function test(a,b,c){
+		console.log(this);
+		console.log(a,b,c);
+	}
+
+
+	//自定义call
+	Function.prototype.mycall = function(o,...args){
+		o = o || window;
+		let that = this;
+		o.fn = that;
+		o.fn(...args);
+		delete o.fn;
+	}
+
+	//自定义apply
+	Function.prototype.myapply = function(o,args){
+		o = o || window;
+		let that = this;
+		o.fn = that;
+		o.fn(...args);//解析
+	}
+	//自定义bind
+	Function.prototype.mybind = function(o,...args){
+		o = o || window;
+		let that = this;
+		o.fn = that;
+		return function(){
+			o.fn(...args);
+		}
+	}
+	//测试
+	test.mycall(obj,1,2,3);
+	test.myapply(obj,[1,2,3]);
+	let f = test.mybind(obj,1,2,3);
+	f();
+
+</script>
+</body>
+</html>
