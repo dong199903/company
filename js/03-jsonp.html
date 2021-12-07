@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	jsonp
+	1.js链接访问后端地址，传递函数名称
+	2.后端根据名称将数据传递到函数参数
+	*/
+	function load(src){
+		let oS = document.createElement("script");
+		oS.src = src;
+		document.body.appendChild(oS);
+	}
+	function getdata(res){
+		console.log(res);
+	}
+	load("http://www.baidu.com?callback=getdata");
+</script>
+</body>
+</html>
