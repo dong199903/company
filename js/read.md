@@ -96,7 +96,7 @@ Catch-control:max-age:no-catch 不设置强缓存
 
 
 
-![](E:\董泽平\Desktop\demo\company\js\1.jpg)
+![](E:\董泽平\Desktop\demo\company\js\image\1.jpg)
 
 **协商缓存**
 
@@ -104,13 +104,13 @@ Catch-control:max-age:no-catch 不设置强缓存
 
 1. 通过Last-Modified：资源最后修改时间
 
-![](E:\董泽平\Desktop\demo\company\js\2.jpg)
+![](E:\董泽平\Desktop\demo\company\js\image\2.jpg)
 
 假设服务端采取了协商缓存机制，客户端第一次请求资源，服务端成功发送资源并携带last-modified。当客户端第二次访问服务端时会携带last-modify，服务端会判断这个last-modif和自己最新的last-modif是否相等，如果相等表示服务端资源未更新，直接给客户端发304。否则表示服务端资源已经更新，重新发送新资源，返回状态码200.
 
 2. 通过Etag：资源唯一标识
 
-   ![](E:\董泽平\Desktop\demo\company\js\3.jpg)
+   ![](E:\董泽平\Desktop\demo\company\js\image\3.jpg)
 
    
 
@@ -120,7 +120,7 @@ Catch-control:max-age:no-catch 不设置强缓存
 
 牢记，先判断是否强缓存，再判断是否弱缓存。
 
-![](E:\董泽平\Desktop\demo\company\js\4.jpg)
+![](E:\董泽平\Desktop\demo\company\js\image\4.jpg)
 
 **三种刷新方式**
 
@@ -173,7 +173,5 @@ js的渲染是阻塞式的，如果页面遇到js会停止页面渲染，等待j
 
 ​	 攻击者盗用了你的身份，以你的名义发送恶意请求
 
-​	使用post验收加强防御	 	
-
-### 
+​	使用post验收加强防御	 	 
 

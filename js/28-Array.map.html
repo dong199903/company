@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	map--结果返回一个数组，数组保存的是每个数组处理后的元素
+	*/
+
+	Array.prototype.map2 = function(callback){
+		let res = [];
+		let len = this.length;
+		for(let i=0;i<len;i++){
+			let tmp = callback(this[i],i,this);
+			res.push(tmp);
+		}
+		return res;
+	}
+	let arr = [1,2,3];
+	console.log(arr.map2((item)=>{
+		return item*2;
+	}))
+</script>
+</body>
+</html>

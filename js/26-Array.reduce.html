@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	reduce：第一个参数是fn
+	        第二个参数是初始值value
+	fn参数
+	1.初始值value
+	2.遍历的数组值item
+	3.遍历的数组下标key
+	*/
+	Array.prototype.myReduce = function(callback,value){
+		for(let i=0;i<this.length;i++){
+			if(value==undefined)
+			{
+				//数组前两个都运算了，直接跳过1次
+				value = callback(this[i],this[i+1],i+1,this);
+				i++;
+			}
+			else{
+				value = callback(value,this[i],i,this);
+			}
+		}
+		return value;
+	}
+
+	let arr = [[1,2,3],[4,5,6]];
+	let res = arr.myReduce((sum,value,key)=>{
+		return sum.concat(value);
+	},[]);
+	console.log(res);
+
+</script>
+</body>
+</html>

@@ -1,15 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lazy-Load</title>
+  <style>
+    .img {
+      width: 200px;
+      height:200px;
+      background-color: gray;
+    }
+    .pic {
+    	width: 200px;
+    	height: 200px;
+    }
+  </style>
 </head>
 <body>
-<script type="text/javascript">
-	/*
-	1.图片预加载
+  <div class="container">
+    <div class="img">
+      // 注意我们并没有为它引入真实的src
+      <img class="pic" alt="加载中" data-src="./image/b1.jpg">
+    </div>
+    <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/b2.png">
+    </div>
+    <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/b3.jpg">
+    </div>
+    <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/b4.jpg">
+    </div>
+    <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/b5.jpg">
+    </div>
+     <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/6.jpg">
+    </div>
+     <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/b7.jpg">
+    </div>
+     <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/b8.jpg">
+    </div>
+     <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/b9.png">
+    </div>
+     <div class="img">
+      <img class="pic" alt="加载中" data-src="./image/b10.png">
+    </div>
+  </div>
+  <script type="text/javascript">
+  	
+  	/*
+	图片懒加载
+  	*/
+  	//getElementsByTagName
+  	let oImgs = document.getElementsByTagName("img");
 
-	2.图片懒加载
-	*/
-</script>
+  	//可视区域的高度
+  	let oHeight = window.innerHeight;
+  	//统计图片数量
+  	let count = 0;
+  	window.addEventListener("scroll",()=>{
+  		for(let i=count;i<oImgs.length;i++){
+  			//可视区域高度-图片距离可视区域顶部的高度>=0表示可以显示了
+  			let distance = oHeight - oImgs[i].getBoundingClientRect().top;
+  			if(distance>=0){//可以显示
+				oImgs[i].src = oImgs[i].getAttribute('data-src');
+				count = i+1;
+  			}
+  		}
+  	})
+  </script>
 </body>
 </html>
