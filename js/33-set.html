@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	class set{
+		constructor(){
+			this.data = {};
+			this.size = 0;
+		}
+		set(key,value){
+			this.data[key]=value;
+		}
+		get(key){
+			return this.data[key];
+		}
+		remove(key){
+			delete this.data[key];
+		}
+	}
+	let m = new map();
+	m.set("name","dzp");
+	console.log(m.get("name"));
+
+	class set{
+		constructor(){
+			this.data = [];
+		}
+		add(val){
+			for(let i=0;i<this.data.length;i++){
+				if(this.data[i]===val)
+					return ;
+			}
+			this.data.push(val);
+		}
+		has(val){
+			return this.data.indexOf(val)!=-1;
+		}
+	}
+</script>
+</body>
+</html>

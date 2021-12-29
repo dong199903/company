@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	promise.all
+	promise.allSettled
+
+	1.promise.all和promise.allSettled都必须传递一个数组
+	2.all方法中的promise必须都成功才可以进入all的resolve状态
+	  allSettled的promise无论成功还是失败最后都进入到resole状态
+	*/
+	promise.allSettled = function (arr){
+		return new Promise((resolve,reject)=>{
+			let result = [];
+			if(arr.lenght===0)return resolve([]);
+			arr.forEach(val=>{
+				//val可能是非promise对象
+				Promise.resolve(val).then(data=>{
+					result.push(data);
+					if(result.length===arr.length)
+						resolve(result);
+				}).catch(msg=>{
+					result.push(msg);
+					if(result.length===arr.length)
+						resolve(result);
+				})
+			})
+		})
+	}
+</script>
+</body>
+</html>

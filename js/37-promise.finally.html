@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	promise.finally
+	1.无论还是resolve还是catch最后都会执行finally.
+	//无论使用什么类型的数据的
+	*/
+	Promise.prototype._finally = function(callback){
+		//then的第一个参数是正确的promsie对象传递的
+		//then的第二个参数是错误的promsie对象传递的
+		return this.then(data=>{
+			return Promise.resolve(callback()).then(()=>data);
+		},err=>{
+			return Promise.resolve(callback()).then(()=>{throw err});
+		})
+	}
+</script>
+</body>
+</html>

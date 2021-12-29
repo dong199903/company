@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	some
+	*/
+	Array.prototype.some2 = function(callback){
+		let len = this.length;
+		for(let i=0;i<len;i++){
+			if(callback(this[i],i,this))
+				return true;
+		}
+		return false;
+	}
+	let arr = [1,2,3];
+	let tmp = arr.some2((v,k)=>{
+		if(v%2===0)
+			return true;
+	})
+	console.log(tmp);
+</script>
+</body>
+</html>

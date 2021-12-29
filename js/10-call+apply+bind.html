@@ -7,10 +7,11 @@
 <script type="text/javascript">
 	/*
 	1.call
-
+	  > 从第二个开始是普通变量
 	2.apply
-
+	  > 第二个参数是数组
 	3.bind
+	  > 
 	*/
 	let obj={name:'dzp'};
 
@@ -24,25 +25,31 @@
 	Function.prototype.mycall = function(o,...args){
 		o = o || window;
 		let that = this;
-		o.fn = that;
-		o.fn(...args);
-		delete o.fn;
+		const fnName = Symbol();
+		o.fnName = that;
+		let result = o.fnName(...args);
+		delete o.fnName;
+		return result;
 	}
 
 	//自定义apply
 	Function.prototype.myapply = function(o,args){
 		o = o || window;
 		let that = this;
-		o.fn = that;
-		o.fn(...args);//解析
+		const fnName = Symbol();
+		o.fnName = that;
+		let result = o.fnName(...args);//解析
+		delete o.fnName;
+		return result;
 	}
 	//自定义bind
 	Function.prototype.mybind = function(o,...args){
 		o = o || window;
 		let that = this;
-		o.fn = that;
+		const fnName = Symbol();
+		o.fnName = that;
 		return function(){
-			o.fn(...args);
+			return o.fnName(...args);
 		}
 	}
 	//测试
@@ -50,7 +57,6 @@
 	test.myapply(obj,[1,2,3]);
 	let f = test.mybind(obj,1,2,3);
 	f();
-
 </script>
 </body>
 </html>
