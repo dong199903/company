@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function unsort(arr){
+      let len = arr.length-1;
+      while(len){
+        //1.生成随机位置
+        let index = Math.floor(Math.random()*len);
+        let tmp = arr[index];
+        arr[index] = arr[len];
+        arr[len] = tmp;
+        len--;
+      }
+      console.log(arr);
+    }
+    unsort([1,2,3,4]);
+  </script>
+</body>
+</html>

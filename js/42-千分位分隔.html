@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    适用于数字是小数点和不是小数点
+    */
+   function transfrom(n){
+    let s1 = String(n).split("");
+    let index = s1.indexOf(".");
+    let res = [];
+    if(index===-1){
+      index = s1.length-1;
+    }else{
+      //存在小数点,将小数点和后面的先加入
+      index = s1.length-1;
+      while(s1[index]!=='.'){
+        res.push(s1[index--]);
+      }
+      res.push(".");
+      index--;
+    }
+    console.log([...res]);
+    //开始正常的分隔
+    while(index>=0) {
+      let count = 3;
+      while(count>0 && index>=0) {
+        res.push(s1[index]);
+        index--;
+        count--;
+      }
+      if(index>=0){
+        res.push(",");
+      }else{
+        return res.reverse().join("");
+      }
+    }
+   }
+   console.log(transfrom(1234567.56));
+ 
+  </script>
+</body>
+</html>

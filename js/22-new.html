@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    new对象的过程
+    1.创建一个对象
+    2.将对象的原型指向函数的prototype
+    3.将对象的this绑定到函数体上
+    4.返回这个对象
+    */
+    let obj = {};
+    function new2 (Target,...args) {
+      let o = {};
+      o.__proto__ = Target.prototype;
+      Target.apply(o,args);
+      return o;
+    }
+  </script>
+</body>
+</html>

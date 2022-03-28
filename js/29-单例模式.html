@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    1.一个静态变量保存唯一对象
+    2.构造函数如果静态变量非空直接返回这个对象，否则创建对象(特殊)
+    */
+    class Obj{
+      static obj = null;//判断对象是否存在
+      constructor(){
+        if(Obj.obj) return Obj.obj;
+        Obj.obj = this;
+      }
+    }
+    let obj0 = new Obj();
+    let obj2 = new Obj();
+    let obj4 = new Obj();
+    console.log(obj0===obj2);//true
+    console.log(obj2===obj4);//true
+
+  </script>
+</body>
+</html>

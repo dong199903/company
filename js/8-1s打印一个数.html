@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    1.let循环
+    2.var循环
+    3.异步变同步 promise+settimeout
+    */
+
+    /*
+    function print1(){
+      for(let i=0;i<5;i++){
+        setTimeout(()=>{console.log(i)},i*1000);
+      }
+    }
+
+
+    function print2(){
+      var i;
+      for(i = 0;i<5;i++){
+        (function (index){
+          setTimeout(()=>console.log(index),index*1000);
+        })(i)
+      }
+    }
+    */
+
+    function load(src) {
+      return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+          resolve(src);
+        }, 1000);
+      })
+    }
+    async function print3(num) {
+      for(let i=1;i<=num;i++){
+        await load(i).then(data=>{
+          console.log(data);
+        })
+      }
+    }
+    print3(3);
+  </script>
+</body>
+</html>

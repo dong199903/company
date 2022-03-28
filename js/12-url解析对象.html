@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function parmarsUrlToObj(url){
+      //http://www.baidu.com?name=dzp&age=22&info=love
+      //1.切割?后面的
+      let obj = {};
+      let str1 = url.split("?");
+      let str2 = str1[1].split("&");
+      for(let key of str2){
+        //2.name=dzp 切割=
+        let str3 = key.split("=");
+        obj[str3[0]] = str3[1];
+      }
+      return obj;
+    }
+    console.log(parmarsUrlToObj("http://www.baidu.com?name=dzp&age=22&info=love"));
+  </script>
+</body>
+</html>

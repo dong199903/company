@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function deepCopy(target,origin){
+      for(let item in origin){
+        let value = origin[item];
+        if(typeof value !== "object"){
+          target[item] = value;
+        }else{
+          //is Object
+          //1.创建实例
+          let obj = new value.constructor;
+          target[item] = obj;
+          deepCopy(target[item],value);
+        }
+      }
+      return target;
+    }
+
+    let obj1 = {name:"dzp",age:22,info:{info:"info"}};
+    let obj = deepCopy({},obj1);
+    obj1.name="dzp2";
+    console.log(obj);
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //扁平化到第n层
+    function dealArr(arr){
+      let res = [];
+      let fn = (tmp)=>{
+        for(let i=0;i<tmp.length;i++){
+          //判断数组的类型
+          if(tmp[i] instanceof Array){
+            fn(tmp[i]);
+          }else{
+            res.push(tmp[i]);
+          }
+        }
+      }
+      fn(arr);
+      return res;
+    }
+
+
+    //扁平化处理到第n层
+    const dealArr = (arr,count) => {
+      let res = [];
+      const main = (arr,count) => {
+        if(count===1){
+          res.push(...arr);
+          return ;
+        }
+        for(let i=0;i<arr.length;i++){
+          if(Array.isArray(arr[i])) {
+            main(arr[i],count-1);
+          } else {
+            res.push(arr[i]);
+          }
+        }
+      }
+      main(arr,count);
+      console.log(res);
+    }
+
+    
+  </script>
+</body>
+</html>

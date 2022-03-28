@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //1.异步并发数目限制
+
+    class RunN{
+      constructor(count){
+        this.que = [];
+        this.max = count;//最大同时运行
+        this.do = 0;//正在运行
+      }
+      add(task){
+        this.que.push(task);
+        this.run();//尝试运行
+      }
+      run(){
+        //如果队列有人，并且正在运行的小于最大运行
+        if(this.que.length && this.run<this.max) {
+          //1.取出队头
+          let node = this.que.shift();
+          //2.正在运行数目+1
+          this.do++;
+          //3.运行结束后，数目-1.继续运行
+          node.then(msg=>{
+            this.do--;
+            this.run();
+          })
+        }
+      }
+    }
+
+    //模拟加载任务
+    const load = (delay,fn) => {
+      return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+          fn();
+        }, delay);
+      })
+    }
+    let task = new RunN(2);//一次性最多跑两个
+    task.add(load(1000,()=>{console.log("1")}));
+    task.add(load(1000,()=>{console.log("2")}));
+    task.add(load(2000,()=>{console.log("3")}));
+    task.add(load(3000,()=>{console.log("4")}));
+  </script>
+</body>
+</html>

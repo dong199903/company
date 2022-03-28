@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    利用事件冒泡机制，实现事件委托
+    无需给每个儿子都设置相同的事件，直接设置在父亲身上监听。
+    1.通过e.target获取事件的儿子元素
+    */
+    //1.创建ul
+    let oUl = document.createElement("ul");
+    document.querySelector("body").appendChild(oUl);
+    //2.创建li
+    for(let i=0;i<10;i++){
+      let oLi = document.createElement("li");
+      oLi.setAttribute("index",i);
+      oUl.appendChild(oLi);
+    }
+    //3.点击事件
+    oUl.addEventListener("click",(e)=>{
+      console.log(e.target.getAttribute("index"));
+    })
+  </script>
+</body>
+</html>

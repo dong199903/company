@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function assign2(target,origin){
+      for(let key in origin){
+        target[key] = origin[key];
+      }
+    }
+    let obj1 = {name:"dzp",age:2};
+    let obj2 = {name:"dzp2",info:{price:1000}};
+    assign2(obj1,obj2);
+    console.log(obj1,obj2);
+    obj1.info.price=2000;
+    console.log(obj1,obj2);
+  </script>
+</body>
+</html>

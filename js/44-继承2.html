@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    继承2：父亲构造对象，使用call绑定
+    > 缺点：儿子无法调用父类的原型方法,可以调用父亲内部的方法
+    */
+   function Father(name,age){
+     this.name = name;
+     this.age = age;
+   }
+   Father.prototype.list = function() {
+     console.log(this.name,this.age);
+   }
+
+   function Son(sex,name,age){
+     this.sex = sex;
+     Father.call(this,name,age);
+   }
+
+   let s = new Son("dzp",23,"男");
+   console.log(s.name);
+   console.log(s.age);
+   console.log(s.sex);
+   s.list();//error
+  </script>
+</body>
+</html>

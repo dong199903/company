@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    观察者模式
+    1.订阅发布是多个事件绑定多个回调
+    2.观察者模式是一个事件绑定多个回调
+    */
+
+   //发布
+   class Observer{
+    constructor(cb){
+      this.cb = cb;
+    }
+    update(){
+      this.cb();
+    }
+   }
+  
+
+   class Subjects{
+    constructor(){
+      this.observers = [];
+    }
+    add(obj){
+      this.observers.push(obj);
+    }
+    notify(){
+      this.observers.forEach(item=>{
+        item.update();
+      })
+    }
+   }  
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function mySetInterval(delay,fn) {
+      let timer = null;
+      const main = () => {
+        timer = setTimeout(() => {
+          fn();
+          main();
+        }, delay);
+      }
+      main();
+      return function(){
+        clearTimeout(timer);
+      }
+    }
+
+    let stop = mySetInterval(1000,()=>{console.log("dzp")})
+    setTimeout(() => {
+      stop();
+    }, 5000);
+
+  </script>
+</body>
+</html>

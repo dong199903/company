@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function _change(str){
+      //abc_def  abcDef
+      //1.切割str
+      let arr1 = str.split("_");
+      let begin = arr1[0];
+      for(let i=1;i<arr1.length;i++){
+        //2.字符串切割两部分，第一部分大写，第二部分不变，拼接
+        let arr2 = arr1[i].split("");
+        arr2[0] = arr2[0].toUpperCase();
+        begin = begin + arr2.join("");
+      }
+      return begin;
+    }
+    console.log(_change("abc_def_ghi"));
+  </script>
+</body>
+</html>

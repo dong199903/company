@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Array.prototype.reduce2 = function (callback,val) {
+      let len = this.length;
+      for(let i = 0;i<len;i++){
+        if(!val){
+          //第一个参数就是待统计的值
+          val = callback(this[i],this[i+1],i+1,this);
+          i++;
+        }else{
+          val = callback(val,this[i]);
+        }
+      }
+      return val;
+    }
+    let arr = [1,2,3];
+    console.log(arr.reduce2((val,item,key)=>{return val+item}),0);
+  </script>
+</body>
+</html>

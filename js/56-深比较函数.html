@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    深比较函数：比较两个对象完全值相同
+    */
+   function isEqual2 (x,y) {
+    if(x===y) return true;
+    //1.判断两个是否是对象,不为空
+    if(x!==null && typeof x ==="object" && y!==null && typeof y === "object") {
+      //2.获取对象的所有keys
+      let key1 = Object.keys(x);
+      let key2 = Object.keys(y);
+      if(key1.length!==key2.length) return false;
+      //3.逐个属性的递归判断
+      for(let val of key1) {
+        if(!isEqual(x[val],y[val])) return false;
+      }
+      return true;
+    }else{
+      return false;
+    }
+   }
+
+  let obj1 = {name:"dzp",info:{a:21}};
+  let obj2 = {name:"dzp",info:{a:1}};
+  console.log(isEqual2(obj1,obj2));
+  </script>
+</body>
+</html>

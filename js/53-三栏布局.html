@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      display: flex;
+      height: 200px;
+    }
+    .left,.right{
+      width: 200px;
+    }
+    .left{
+      background-color: red;
+    }
+    .right{
+      background-color: beige;
+    }
+    .mid{
+      background-color: aqua;
+      flex-grow: 1;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="left"></div>
+    <div class="mid"></div>
+    <div class="right"></div>
+  </div>
+  <span></span>
+  <script>
+    let oSpan = document.querySelector("span");
+    console.log(oSpan);
+  </script>
+</body>
+</html>
+     

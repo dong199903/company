@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    /*
+    1.继承方案1(原型链继承)儿子的prototype=父亲实例对象
+    > 缺点：无法从儿子给父亲传递参数
+    */
+    function Father(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    function Son(sex){
+      this.sex = sex;
+    }
+    Son.prototype = new Father("dzp",23);
+
+    let s = new Son("男");
+    console.log(s.name);
+    console.log(s.age);
+    console.log(s.sex);
+  </script>
+</body>
+</html>

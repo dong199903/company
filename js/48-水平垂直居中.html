@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     /*
+     1.方式一：父亲相对定位，儿子绝对定位。top和left都是50%。然后transform
+     2.方式二：父亲使用flex布局，设置行和列对其为中间对其
+     */
+    .father{
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .son{
+      width: 100px;
+      height: 100px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div class="father">
+    <div class="son"></div>
+  </div>
+</body>
+</html>

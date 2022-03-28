@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    apply(this,arr)
+    bind(this,o,o)--需要手动执行
+    call(this,0,0)
+    */
+    Function.prototype.apply2 = function(obj,args){
+      obj = obj || window;
+      let key = Symbol();
+      obj.key = this;//将自己绑定新对象上
+      let res = obj.key(...args);
+      delete obj.key;
+      return res;
+    }
+
+    Function.prototype.bind2 = function(obj,...args){
+      obj = obj || window;
+      let key = Symbol();
+      obj.key = this;//将自己绑定新对象上
+      return ()=>{
+        return obj.key(...args);
+      }      
+    }
+
+    Function.prototype.call2 = function(obj,...args){
+      obj = obj || window;
+      let key = Symbol();
+      obj.key = this;//将自己绑定新对象上
+      let res = obj.key(...args);
+      delete obj.key;
+      return res;
+    }
+
+    let obj = {
+      name:"dzp"
+    }
+    function fn(name,age){
+      console.log(this);
+      console.log(name,age);
+    }
+    fn.apply2(obj,["apply",22]);
+    let res = fn.bind2(obj,"bind",22)();
+    console.log(res);
+    fn.call2(obj,"call",22)
+
+
+    
+  </script>
+</body>
+</html>

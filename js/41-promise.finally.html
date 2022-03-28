@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    /*
+    promise.finally
+    1.本质是一个then
+    2.上层状态成功还是失败，finlly里面都会执行
+    3.先执行自己的内部回调函数，然后将上层的promise信息传递给下一个promise
+    4.finally无法传递数据出去，只能传递上层的promise
+    5.finapp的回调函数无参数
+    */
+    Promise.prototype.finally2 = function(cb) {
+      return this.then((data)=>{
+        return Promise.resolve(cb()).then(()=>{
+          return data;
+        })
+      },(err)=>{
+        return Promise.resolve(cb()).then(()=>{
+          throw err;
+        })
+      })
+    }
+
+    let p1 = new Promise((resolve,reject)=> {
+      resolve("dzp");
+    })
+
+    p1.then(msg=>{
+      console.log(msg)//dzp
+      return msg;
+    }).catch(msg=>{
+      console.log(msg)
+    }).finally2(()=>{
+      
+      console.log("infpo");
+      return 1;
+    }).then(msg=>{
+      console.log(msg);
+    })
+   
+  </script>
+</body>
+</html>

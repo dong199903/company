@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    
+    <div id="nav">
+        <a href="#/page1">page1</a>
+        <a href="#/page2">page2</a>
+        <a href="#/page3">page3</a>
+    </div>
+    <div id="container"></div>
+
+  <script>
+    /*
+    hash路由
+    1.前面有一个#
+    2.通过hashchange触发不同hash值对应的回调试图显示
+    3.hash值的改变，不会触发浏览器向服务器发送数据请求
+    
+    */
+    class HashRouter{
+      constructor() {
+        this.hashs = {};
+        window.addEventListener("hashchange",()=>{this.load();})
+      }
+      register(name,callback){
+        this.hashs[name] = callback;
+      }
+      registerIndex(callback){
+        this.hashs.index = callback;
+      }
+      registerNotFound(callback){
+        this.hashs.not = callback;
+      }
+      //触发回调
+      load(){
+        let hash = location.hash.slice(1);
+        let callback = null;
+        if(!hash) {
+          //首次，跳转到首页
+          hash = "index";
+        }
+        //寻找是否存在这个路由
+        if(!this.hashs[hash]){
+          callback = this.hashs.not;
+        } else {
+          callback = this.hashs[hash];
+        }
+        //触发回调
+        callback();
+      }
+    }
+
+    let hashs = new HashRouter();
+    hashs.registerIndex(()=>{console.log("index.html")});
+    hashs.registerNotFound(()=>{console.log("404.html")});
+    hashs.register('/page1',()=>{console.log("page1.html")});
+    hashs.register('/page2',()=>{console.log("page2.html")});
+    hashs.register('/page3',()=>{console.log("page3.html")});
+    //初始就要加载，加载首页原因
+    hashs.load();
+    let container = document.getElementById('container');
+  </script>
+</body>
+</html>

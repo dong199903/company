@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function jsonp(url, jsonpCallback) {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.type = 'text/javascript'
+      window[jsonpCallback] = function(data) {
+        console.log(data);//后代获取的数据
+      }
+      document.body.appendChild(script)
+    }
+  </script>
+</body>
+</html>
