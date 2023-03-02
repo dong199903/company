@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .target{
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+    .target>div{
+      width: 100px;
+      height: 100px;
+      background-color: gold;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="target">
+    <div></div>
+  </div>
+  <script>
+    /**
+     * 如何实现类的私有属性
+     * 1.新语法#
+     * 2.ts的private
+     * 3.proxy对类进行拦截和约束
+     * 
+     * /
+    class Peo{
+      constructor(name,age) {
+        this._name=name;
+        this._age=age;
+        this.other='other'
+      }
+    }
+    let p = new Peo('dong',23);
+    let pro = new Proxy(p,{
+      get(target,props){
+        if(props.startsWith('_')) return ;
+        return target[props];
+      },
+      set(target,key,val) {
+        if(key.startsWith('_')) return ;
+        target[key] = val;
+      }
+    })
+    console.log(pro.name,pro.age,pro.other)
+    pro.name='dzp2'
+    pro.age=78
+    pro.other='other2'
+    console.log(pro.name,pro.age,pro.other)
+  </script>
+</body>
+</html>
