@@ -10,9 +10,9 @@
   <script>
     //一个对象的__proto__直接指向了新对象
    Object.create2 = function (obj) {
-    let o = {};
-    o.__proto__ = obj;
-    return o;
+    function F() {}
+    F.prototype = obj;
+    return new F();   
    }
   </script>
 </body>
