@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function dateFormat(timer,str) {
+      //1.获取年月日
+      timer = new Date();
+      let years = timer.getYear();
+      let months = timer.getMonth();
+      let days = timer.getDay();
+      let hours = timer.getHours();
+      let minutes = timer.getMinutes();
+      let seconds = timer.getSeconds();
+      str = str.replace(/yyyy/,years);
+      str = str.replace(/MM/,months);
+      str = str.replace(/dd/,days);
+      str = str.replace(/hh/,hours);
+      str = str.replace(/mm/,minutes);
+      str = str.replace(/ss/,seconds);
+      console.log(str)
+    }
+    dateFormat(new Date('2020-12-01'), 'yyyy/MM/dd hh:mm:ss') // 2020/12/01
+  </script>
+</body>
+</html>
