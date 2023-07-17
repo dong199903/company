@@ -12,9 +12,9 @@
     function throle (delay,fn) {
       let prev = 0;
       return function(...args){
-        if(new Date()-prev<delay) return;
+        if(Date.now()-prev<delay) return;
         fn.apply(this,args);
-        prev = new Date()
+        prev = Date.now()
       }
     }
   </script>
